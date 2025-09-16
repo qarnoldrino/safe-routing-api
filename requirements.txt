@@ -1,0 +1,7 @@
+flask
+gunicorn
+networkx
+geopandas
+pandas
+osmnx
+shapely

@@ -8,21 +8,16 @@ import osmnx as ox
 from shapely.geometry import mapping
 import requests
 import os
+import gdown
 
 # ---------------------------------------
 # Helper: download files from Google Drive
 # ---------------------------------------
 def download_if_missing(drive_file_id: str, filename: str):
     if not os.path.exists(filename):
-        url = f"https://drive.google.com/uc?export=download&id={drive_file_id}"
-        print(f"Downloading {filename} from Google Drive (id={drive_file_id})...")
-        r = requests.get(url, stream=True)
-        r.raise_for_status()
-        with open(filename, "wb") as f:
-            for chunk in r.iter_content(chunk_size=8192):
-                if chunk:
-                    f.write(chunk)
-        print(f"Downloaded {filename}.")
+        url = f"https://drive.google.com/uc?id={drive_file_id}"
+        print(f"Downloading {filename} from Google Drive...")
+        gdown.download(url, filename, quiet=False)
 
 # ---------------------------------------
 # Google Drive file IDs

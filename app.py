@@ -22,14 +22,14 @@ def download_if_missing(drive_file_id: str, filename: str):
 # ---------------------------------------
 # Google Drive file IDs
 # ---------------------------------------
-GRAPHML_ID = "1otBqeeWgyLGFWWkxCs7MtVAd76Ob-WWW"
+GRAPHML_ID = "1Y2jBE2hzOOYk7tWQ6HO-iJjC1Jeksq32"
 EDGES_ID   = "1L65iNRi09VxivAtqJTL8iUbO2P8C3yxd"
 RISK_ID    = "1tNvOlMHI8WyFuYpKIcBkR8ZoQydFsHYI"
 
 # ---------------------------------------
 # Download large data files if missing
 # ---------------------------------------
-download_if_missing(GRAPHML_ID, "chicago_walk_simplified.graphml")
+download_if_missing(GRAPHML_ID, "chicago_walk_simplified.pickle")
 download_if_missing(EDGES_ID, "edges_gdf.parquet")
 download_if_missing(RISK_ID, "risk_surface_monthly.parquet")
 
@@ -37,7 +37,7 @@ download_if_missing(RISK_ID, "risk_surface_monthly.parquet")
 # Load graph and risk data once
 # ---------------------------------------
 print("Loading graph and data...")
-G = nx.read_graphml("chicago_walk_simplified.graphml")
+G = nx.read_graphml("chicago_walk_simplified.pickle")
 edges_gdf = gpd.read_parquet("edges_gdf.parquet")
 risk_surface = pd.read_parquet("risk_surface_monthly.parquet")
 print("Loaded network + risk surface.")
